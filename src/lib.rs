@@ -34,6 +34,13 @@ use std::collections::HashMap;
 use std::fmt::{self, Debug};
 use std::str::FromStr;
 
+/// Gotenberg server URL for integration tests.
+/// Override with the `GOTENBERG_URL` environment variable.
+#[cfg(test)]
+pub(crate) static BASE_URL: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
+    std::env::var("GOTENBERG_URL").unwrap_or_else(|_| "http://localhost:3000".to_string())
+});
+
 #[cfg(all(test, not(target_arch = "wasm32")))]
 mod tests;
 

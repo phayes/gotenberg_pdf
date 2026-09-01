@@ -369,3 +369,25 @@ By default there is no HTTP/2 support. HTTP/2 support can be enalbed with the `h
 This crate compiles to `wasm32-unknown-unknown` and is runnable in the browser. In the browser, it will use the built-in browser fetch API to make requests to the Gotenberg server. The `stream`, `blocking`, `rustls` and `native-tls` features are not available on wasm32 or in the browser.
 
 Be aware that in the browser, the gotenberg server will need to be behind a proxy that sets the correct CORS headers ('Access-Control-Allow-Origin').
+
+## Testing
+
+Integration tests require a running Gotenberg server. Start one locally with:
+
+```sh
+docker run --rm -p 3000:3000 gotenberg/gotenberg:8
+```
+
+Tests default to `http://localhost:3000`. Point them at a different server with the `GOTENBERG_URL` environment variable:
+
+```sh
+GOTENBERG_URL=http://192.168.1.10:3000 cargo test --lib
+```
+
+Feature-specific suites:
+
+```sh
+cargo test --lib --features=stream
+cargo test --lib --features=blocking
+cargo test --all-features
+```

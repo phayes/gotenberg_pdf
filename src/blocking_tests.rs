@@ -19,7 +19,7 @@ const PASSWORD_PROTECTED_ODT_CONTENT: &[u8] =
 
 #[test]
 fn test_url_to_pdf() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.skip_network_idle_events = Some(false);
@@ -45,7 +45,7 @@ fn test_url_to_pdf() {
 
 #[test]
 fn test_web_options_trace_id() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.trace_id = Some("test-trace-id".to_string());
@@ -55,7 +55,7 @@ fn test_web_options_trace_id() {
 
 #[test]
 fn test_web_options_single_page() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.single_page = Some(true);
@@ -65,7 +65,7 @@ fn test_web_options_single_page() {
 
 #[test]
 fn test_web_options_paper_size() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.paper_width = Some("210mm".parse().unwrap());
@@ -76,7 +76,7 @@ fn test_web_options_paper_size() {
 
 #[test]
 fn test_web_options_margins() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.margin_top = Some("1in".parse().unwrap());
@@ -89,7 +89,7 @@ fn test_web_options_margins() {
 
 #[test]
 fn test_web_options_prefer_css_page_size() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.prefer_css_page_size = Some(true);
@@ -99,7 +99,7 @@ fn test_web_options_prefer_css_page_size() {
 
 #[test]
 fn test_web_options_print_background() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.print_background = Some(true);
@@ -109,7 +109,7 @@ fn test_web_options_print_background() {
 
 #[test]
 fn test_web_options_landscape() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.landscape = Some(true);
@@ -119,7 +119,7 @@ fn test_web_options_landscape() {
 
 #[test]
 fn test_web_options_scale() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.scale = Some(1.5);
@@ -129,7 +129,7 @@ fn test_web_options_scale() {
 
 #[test]
 fn test_web_options_page_ranges() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.native_page_ranges = Some("1-3,5".parse().unwrap());
@@ -139,7 +139,7 @@ fn test_web_options_page_ranges() {
 
 #[test]
 fn test_web_options_header_footer() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.header_html = Some("<h1>Header Test: <div class='title'></div></h1>".into());
@@ -150,7 +150,7 @@ fn test_web_options_header_footer() {
 
 #[test]
 fn test_web_options_wait_delay() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.wait_delay = Some(Duration::from_secs(1));
@@ -160,7 +160,7 @@ fn test_web_options_wait_delay() {
 
 #[test]
 fn test_web_options_emulated_media_type() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.emulated_media_type = Some("screen".parse().unwrap());
@@ -170,7 +170,7 @@ fn test_web_options_emulated_media_type() {
 
 #[test]
 fn test_web_options_fail_on_http_status_codes() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.fail_on_http_status_codes = Some(vec![404, 500]);
@@ -180,7 +180,7 @@ fn test_web_options_fail_on_http_status_codes() {
 
 #[test]
 fn test_web_options_metadata() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.metadata = Some(HashMap::from([
@@ -193,7 +193,7 @@ fn test_web_options_metadata() {
 
 #[test]
 fn test_web_options_user_agent() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     options.user_agent = Some("TestUserAgent/1.0".into());
@@ -203,7 +203,7 @@ fn test_web_options_user_agent() {
 
 #[test]
 fn test_web_options_negative_scale() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     // Negative scale should fail
@@ -215,7 +215,7 @@ fn test_web_options_negative_scale() {
 
 #[test]
 fn test_web_options_unsupported_user_agent() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = WebOptions::default();
     // Unsupported user agent format
@@ -227,7 +227,7 @@ fn test_web_options_unsupported_user_agent() {
 
 #[test]
 fn test_screenshot_options_trace_id() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
 
     let mut options = ScreenshotOptions::default();
     options.trace_id = Some("test-trace-id".to_string());
@@ -237,7 +237,7 @@ fn test_screenshot_options_trace_id() {
 
 #[test]
 fn test_screenshot_options_width() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.width = Some(1024);
 
@@ -246,7 +246,7 @@ fn test_screenshot_options_width() {
 
 #[test]
 fn test_screenshot_options_height() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.height = Some(768);
 
@@ -255,7 +255,7 @@ fn test_screenshot_options_height() {
 
 #[test]
 fn test_screenshot_options_clip() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.clip = Some(true);
 
@@ -264,7 +264,7 @@ fn test_screenshot_options_clip() {
 
 #[test]
 fn test_screenshot_options_format() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.format = Some(ImageFormat::Jpeg);
 
@@ -273,7 +273,7 @@ fn test_screenshot_options_format() {
 
 #[test]
 fn test_screenshot_options_quality() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.quality = Some(85);
 
@@ -282,7 +282,7 @@ fn test_screenshot_options_quality() {
 
 #[test]
 fn test_screenshot_options_omit_background() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.omit_background = Some(true);
 
@@ -291,7 +291,7 @@ fn test_screenshot_options_omit_background() {
 
 #[test]
 fn test_screenshot_options_optimize_for_speed() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.optimize_for_speed = Some(true);
 
@@ -300,7 +300,7 @@ fn test_screenshot_options_optimize_for_speed() {
 
 #[test]
 fn test_screenshot_options_wait_delay() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.wait_delay = Some(Duration::from_secs(1));
 
@@ -324,7 +324,7 @@ fn test_screenshot_options_wait_for_expression() {
     </html>
     "#;
 
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.wait_for_expression = Some("window.isReady === true".to_string());
 
@@ -333,7 +333,7 @@ fn test_screenshot_options_wait_for_expression() {
 
 #[test]
 fn test_screenshot_options_emulated_media_type() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.emulated_media_type = Some(MediaType::Screen);
 
@@ -342,7 +342,7 @@ fn test_screenshot_options_emulated_media_type() {
 
 #[test]
 fn test_screenshot_options_cookies() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.cookies = Some(vec![Cookie {
         name: "session".to_string(),
@@ -356,7 +356,7 @@ fn test_screenshot_options_cookies() {
 
 #[test]
 fn test_screenshot_options_skip_network_idle_events() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.skip_network_idle_events = Some(false);
 
@@ -365,7 +365,7 @@ fn test_screenshot_options_skip_network_idle_events() {
 
 #[test]
 fn test_screenshot_options_user_agent() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.user_agent = Some("Test-Agent".to_string());
 
@@ -374,7 +374,7 @@ fn test_screenshot_options_user_agent() {
 
 #[test]
 fn test_screenshot_options_extra_http_headers() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.extra_http_headers = Some(
         vec![
@@ -390,7 +390,7 @@ fn test_screenshot_options_extra_http_headers() {
 
 #[test]
 fn test_screenshot_options_fail_on_http_status_codes() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.fail_on_http_status_codes = Some(vec![404, 500]);
 
@@ -399,7 +399,7 @@ fn test_screenshot_options_fail_on_http_status_codes() {
 
 #[test]
 fn test_screenshot_options_fail_on_resource_http_status_codes() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.fail_on_resource_http_status_codes = Some(vec![403, 502]);
 
@@ -408,7 +408,7 @@ fn test_screenshot_options_fail_on_resource_http_status_codes() {
 
 #[test]
 fn test_screenshot_options_fail_on_resource_loading_failed() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.fail_on_resource_loading_failed = Some(true);
 
@@ -417,7 +417,7 @@ fn test_screenshot_options_fail_on_resource_loading_failed() {
 
 #[test]
 fn test_screenshot_options_fail_on_console_exceptions() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = ScreenshotOptions::default();
     options.fail_on_console_exceptions = Some(true);
 
@@ -426,7 +426,7 @@ fn test_screenshot_options_fail_on_console_exceptions() {
 
 #[test]
 fn test_doc_options_trace_id() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.trace_id = Some("some-trace-id".to_string());
 
@@ -436,7 +436,7 @@ fn test_doc_options_trace_id() {
 }
 #[test]
 fn test_doc_options_password() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.password = Some("secure-password".to_string());
 
@@ -451,7 +451,7 @@ fn test_doc_options_password() {
 
 #[test]
 fn test_doc_options_landscape() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.landscape = Some(true);
 
@@ -462,7 +462,7 @@ fn test_doc_options_landscape() {
 
 #[test]
 fn test_doc_options_export_form_fields() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_form_fields = Some(false);
 
@@ -473,7 +473,7 @@ fn test_doc_options_export_form_fields() {
 
 #[test]
 fn test_doc_options_allow_duplicate_field_names() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.allow_duplicate_field_names = Some(true);
 
@@ -484,7 +484,7 @@ fn test_doc_options_allow_duplicate_field_names() {
 
 #[test]
 fn test_doc_options_export_bookmarks() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_bookmarks = Some(false);
 
@@ -495,7 +495,7 @@ fn test_doc_options_export_bookmarks() {
 
 #[test]
 fn test_doc_options_export_notes() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_notes = Some(true);
 
@@ -506,7 +506,7 @@ fn test_doc_options_export_notes() {
 
 #[test]
 fn test_doc_options_quality() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.quality = Some(75);
 
@@ -517,7 +517,7 @@ fn test_doc_options_quality() {
 
 #[test]
 fn test_doc_options_max_image_resolution() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.max_image_resolution = Some(600);
 
@@ -528,7 +528,7 @@ fn test_doc_options_max_image_resolution() {
 
 #[test]
 fn test_doc_options_pdfua() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.pdfua = Some(true);
 
@@ -539,7 +539,7 @@ fn test_doc_options_pdfua() {
 
 #[test]
 fn test_doc_options_native_page_ranges() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.native_page_ranges = Some("1-3,5".parse().unwrap());
 
@@ -550,7 +550,7 @@ fn test_doc_options_native_page_ranges() {
 
 #[test]
 fn test_doc_options_export_bookmarks_to_pdf_destination() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_bookmarks_to_pdf_destination = Some(true);
 
@@ -561,7 +561,7 @@ fn test_doc_options_export_bookmarks_to_pdf_destination() {
 
 #[test]
 fn test_doc_options_export_placeholders() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_placeholders = Some(true);
 
@@ -572,7 +572,7 @@ fn test_doc_options_export_placeholders() {
 
 #[test]
 fn test_doc_options_export_notes_pages() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_notes_pages = Some(true);
 
@@ -583,7 +583,7 @@ fn test_doc_options_export_notes_pages() {
 
 #[test]
 fn test_doc_options_export_only_notes_pages() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_only_notes_pages = Some(true);
 
@@ -594,7 +594,7 @@ fn test_doc_options_export_only_notes_pages() {
 
 #[test]
 fn test_doc_options_export_notes_in_margin() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_notes_in_margin = Some(true);
 
@@ -605,7 +605,7 @@ fn test_doc_options_export_notes_in_margin() {
 
 #[test]
 fn test_doc_options_convert_ooo_target_to_pdf_target() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.convert_ooo_target_to_pdf_target = Some(true);
 
@@ -616,7 +616,7 @@ fn test_doc_options_convert_ooo_target_to_pdf_target() {
 
 #[test]
 fn test_doc_options_export_links_relative_fsys() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_links_relative_fsys = Some(true);
 
@@ -627,7 +627,7 @@ fn test_doc_options_export_links_relative_fsys() {
 
 #[test]
 fn test_doc_options_export_hidden_slides() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.export_hidden_slides = Some(true);
 
@@ -638,7 +638,7 @@ fn test_doc_options_export_hidden_slides() {
 
 #[test]
 fn test_doc_options_skip_empty_pages() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.skip_empty_pages = Some(true);
 
@@ -649,7 +649,7 @@ fn test_doc_options_skip_empty_pages() {
 
 #[test]
 fn test_doc_options_add_original_document_as_stream() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.add_original_document_as_stream = Some(true);
 
@@ -660,7 +660,7 @@ fn test_doc_options_add_original_document_as_stream() {
 
 #[test]
 fn test_doc_options_single_page_sheets() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.single_page_sheets = Some(true);
 
@@ -671,7 +671,7 @@ fn test_doc_options_single_page_sheets() {
 
 #[test]
 fn test_doc_options_lossless_image_compression() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.lossless_image_compression = Some(true);
 
@@ -682,7 +682,7 @@ fn test_doc_options_lossless_image_compression() {
 
 #[test]
 fn test_doc_options_reduce_image_resolution() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.reduce_image_resolution = Some(true);
 
@@ -693,7 +693,7 @@ fn test_doc_options_reduce_image_resolution() {
 
 #[test]
 fn test_doc_options_pdfa() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let mut options = DocumentOptions::default();
     options.pdfa = Some(PDFFormat::A1b);
 
@@ -704,7 +704,7 @@ fn test_doc_options_pdfa() {
 
 #[test]
 fn test_pdf_metadata() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let options = DocumentOptions::default();
 
     // Create the PDF
@@ -737,13 +737,13 @@ fn test_pdf_metadata() {
 
 #[test]
 pub fn test_health_check() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let _health = client.health_check().unwrap();
 }
 
 #[test]
 pub fn test_version_string() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let version = client.version().unwrap();
 
     // It should start with 8.
@@ -752,6 +752,6 @@ pub fn test_version_string() {
 
 #[test]
 pub fn test_metrics() {
-    let client = Client::new("http://localhost:3000");
+    let client = Client::new(&BASE_URL);
     let _metrics = client.metrics().unwrap();
 }
