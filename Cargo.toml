@@ -1,13 +1,13 @@
 [package]
 name = "gotenberg_pdf"
-version = "0.5.2"
-edition = "2021"
+version = "0.6.0"
+edition = "2024"
 license = "MIT"
 description = "A Rust client for the Gotenberg PDF API"
 keywords = ["gotenberg", "pdf", "chromium", "libreoffice"]
 
 [dependencies]
-reqwest = { version = "0.12", features = [
+reqwest = { version = "0.13", features = [
     "multipart",
 ], default-features = false }
 serde = { version = "1.0", features = ["derive"] }
@@ -18,7 +18,7 @@ futures = { version = "0.3", optional = true }
 
 [features]
 default = ["zeroize"]
-rustls-tls = ["reqwest/rustls-tls"]
+rustls = ["reqwest/rustls"]
 native-tls = ["reqwest/native-tls"]
 stream = ["reqwest/stream", "futures"]
 http2 = ["reqwest/http2"]

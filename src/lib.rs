@@ -63,9 +63,9 @@ pub enum Error {
     ParseError(String, String, String),
 }
 
-impl Into<Error> for ReqwestError {
-    fn into(self) -> Error {
-        Error::CommunicationError(self)
+impl From<ReqwestError> for Error {
+    fn from(error: ReqwestError) -> Self {
+        Error::CommunicationError(error)
     }
 }
 
@@ -1259,19 +1259,13 @@ pub enum PDFFormat {
     A3b,
 }
 
-impl PDFFormat {
-    pub fn to_string(&self) -> String {
-        match self {
-            PDFFormat::A1b => "PDF/A-1b".to_string(),
-            PDFFormat::A2b => "PDF/A-2b".to_string(),
-            PDFFormat::A3b => "PDF/A-3b".to_string(),
-        }
-    }
-}
-
 impl fmt::Display for PDFFormat {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.to_string())
+        match self {
+            PDFFormat::A1b => write!(f, "PDF/A-1b"),
+            PDFFormat::A2b => write!(f, "PDF/A-2b"),
+            PDFFormat::A3b => write!(f, "PDF/A-3b"),
+        }
     }
 }
 
@@ -1308,19 +1302,13 @@ pub enum ImageFormat {
     Webp,
 }
 
-impl ImageFormat {
-    pub fn to_string(&self) -> String {
-        match self {
-            ImageFormat::Png => "png".to_string(),
-            ImageFormat::Jpeg => "jpeg".to_string(),
-            ImageFormat::Webp => "webp".to_string(),
-        }
-    }
-}
-
 impl fmt::Display for ImageFormat {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.to_string())
+        match self {
+            ImageFormat::Png => write!(f, "png"),
+            ImageFormat::Jpeg => write!(f, "jpeg"),
+            ImageFormat::Webp => write!(f, "webp"),
+        }
     }
 }
 
@@ -1353,18 +1341,12 @@ pub enum MediaType {
     Print,
 }
 
-impl MediaType {
-    pub fn to_string(&self) -> String {
-        match self {
-            MediaType::Screen => "screen".to_string(),
-            MediaType::Print => "print".to_string(),
-        }
-    }
-}
-
 impl fmt::Display for MediaType {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.to_string())
+        match self {
+            MediaType::Screen => write!(f, "screen"),
+            MediaType::Print => write!(f, "print"),
+        }
     }
 }
 

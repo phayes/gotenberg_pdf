@@ -129,7 +129,7 @@ impl Client {
             req = req.basic_auth(username, Some(password));
         }
 
-        let response: Response = req.send().await.map_err(Into::into)?;
+        let response: Response = req.send().await?;
 
         if !response.status().is_success() {
             let status = response.status();
@@ -140,7 +140,7 @@ impl Client {
             )));
         }
 
-        response.bytes().await.map_err(Into::into)
+        Ok(response.bytes().await?)
     }
 
     /// Convert a URL to a PDF using the Chromium engine.
@@ -395,8 +395,8 @@ impl Client {
     /// Get the health status of the Gotenberg server.
     pub async fn health_check(&self) -> Result<health::Health, Error> {
         let url = format!("{}/health", self.base_url);
-        let response = self.client.get(&url).send().await.map_err(Into::into)?;
-        let body = response.text().await.map_err(Into::into)?;
+        let response = self.client.get(&url).send().await?;
+        let body = response.text().await?;
         serde_json::from_str(&body)
             .map_err(|e| Error::ParseError("Health".to_string(), body, e.to_string()))
     }
@@ -404,8 +404,8 @@ impl Client {
     /// Get the version of the Gotenberg server.
     pub async fn version(&self) -> Result<String, Error> {
         let url = format!("{}/version", self.base_url);
-        let response = self.client.get(&url).send().await.map_err(Into::into)?;
-        let body = response.text().await.map_err(Into::into)?;
+        let response = self.client.get(&url).send().await?;
+        let body = response.text().await?;
         Ok(body)
     }
 
@@ -415,13 +415,13 @@ impl Client {
     /// By default the namespace is `gotenberg`, but this can be changed by passing `--prometheus-namespace` to the Gotenberg server on startup.
     ///
     /// - `{namespace}_chromium_requests_queue_size`    Current number of Chromium conversion requests waiting to be treated.
-    /// - `{namespace}_chromium_restarts_count`	        Current number of Chromium restarts.
-    /// - `{namespace}_libreoffice_requests_queue_size`	Current number of LibreOffice conversion requests waiting to be treated.
-    /// - `{namespace}_libreoffice_restarts_count`	    Current number of LibreOffice restarts.
+    /// - `{namespace}_chromium_restarts_count`         Current number of Chromium restarts.
+    /// - `{namespace}_libreoffice_requests_queue_size` Current number of LibreOffice conversion requests waiting to be treated.
+    /// - `{namespace}_libreoffice_restarts_count`      Current number of LibreOffice restarts.
     pub async fn metrics(&self) -> Result<String, Error> {
         let url = format!("{}/prometheus/metrics", self.base_url);
-        let response = self.client.get(&url).send().await.map_err(Into::into)?;
-        let body = response.text().await.map_err(Into::into)?;
+        let response = self.client.get(&url).send().await?;
+        let body = response.text().await?;
         Ok(body)
     }
 }

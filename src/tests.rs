@@ -1,6 +1,7 @@
+#![allow(clippy::field_reassign_with_default)]
+
 use super::*;
 use std::time::Duration;
-use tokio;
 
 const HTML_CONTENT: &str = r#"
 <!doctype html>

@@ -1,3 +1,5 @@
+#![allow(clippy::field_reassign_with_default)]
+
 use super::*;
 use crate::BlockingClient as Client;
 use std::time::Duration;

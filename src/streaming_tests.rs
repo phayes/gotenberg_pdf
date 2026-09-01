@@ -1,8 +1,9 @@
+#![allow(clippy::field_reassign_with_default)]
+
 use super::*;
 use futures::StreamExt; // For stream.next()
 use std::collections::HashMap;
 use std::time::Duration;
-use tokio;
 
 const HTML_CONTENT: &str = r#"
 <!doctype html>

@@ -1,3 +1,5 @@
+#![allow(clippy::field_reassign_with_default)]
+
 use super::*;
 use std::time::Duration;
 use wasm_bindgen_test::wasm_bindgen_test_configure;

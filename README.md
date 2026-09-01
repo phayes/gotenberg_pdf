@@ -349,7 +349,7 @@ Provides control over the document generation process from the LibreOffice engin
 
 By default there is no support for HTTPS. If you need TLS, you can enable it by adding one of the following features to your `Cargo.toml`:
 
- - `rustls-tls` - Enables TLS / HTTPS support using the `rustls` library.
+ - `rustls` - Enables TLS / HTTPS support using the `rustls` library.
  - `native-tls` - Enables TLS / HTTPS support using the native system TLS library.
 
 ### HTTP/2
@@ -364,6 +364,6 @@ By default there is no HTTP/2 support. HTTP/2 support can be enalbed with the `h
 
 ## Web Assembly / Browser Support
 
-This crate compiles to `wasm32-unknown-unknown` and is runnable in the browser. In the browser, it will use the built-in browser fetch API to make requests to the Gotenberg server. The `stream`, `blocking`, `rustls-tls` and `native-tls` features are not available on wasm32 or in the browser.
+This crate compiles to `wasm32-unknown-unknown` and is runnable in the browser. In the browser, it will use the built-in browser fetch API to make requests to the Gotenberg server. The `stream`, `blocking`, `rustls` and `native-tls` features are not available on wasm32 or in the browser.
 
 Be aware that in the browser, the gotenberg server will need to be behind a proxy that sets the correct CORS headers ('Access-Control-Allow-Origin').

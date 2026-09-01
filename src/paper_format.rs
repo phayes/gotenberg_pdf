@@ -82,8 +82,8 @@ impl FromStr for LinearDimention {
     type Err = Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let size = s.trim_end_matches(|c: char| !c.is_digit(10) && c != '.');
-        let unit = s.trim_start_matches(|c: char| c.is_digit(10) || c == '.');
+        let size = s.trim_end_matches(|c: char| !c.is_ascii_digit() && c != '.');
+        let unit = s.trim_start_matches(|c: char| c.is_ascii_digit() || c == '.');
 
         let size = size.parse::<f64>().map_err(|e| {
             Error::ParseError("LinearDimention".to_string(), s.to_string(), e.to_string())
@@ -211,7 +211,6 @@ impl<'de> Deserialize<'de> for LinearDimention {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use serde_json;
 
     #[test]
     fn test_paper_size_from_str_valid() {

@@ -119,7 +119,7 @@ impl BlockingClient {
             req = req.basic_auth(username, Some(password));
         }
 
-        let response: Response = req.send().map_err(Into::into)?;
+        let response: Response = req.send()?;
 
         if !response.status().is_success() {
             let status = response.status();
@@ -130,7 +130,7 @@ impl BlockingClient {
             )));
         }
 
-        response.bytes().map_err(Into::into)
+        Ok(response.bytes()?)
     }
 
     /// Convert a URL to a PDF using the Chromium engine.
@@ -369,8 +369,8 @@ impl BlockingClient {
     /// Get the health status of the Gotenberg server.
     pub fn health_check(&self) -> Result<health::Health, Error> {
         let url = format!("{}/health", self.base_url);
-        let response = self.client.get(&url).send().map_err(Into::into)?;
-        let body = response.text().map_err(Into::into)?;
+        let response = self.client.get(&url).send()?;
+        let body = response.text()?;
         serde_json::from_str(&body)
             .map_err(|e| Error::ParseError("Health".to_string(), body, e.to_string()))
     }
@@ -378,8 +378,8 @@ impl BlockingClient {
     /// Get the version of the Gotenberg server.
     pub fn version(&self) -> Result<String, Error> {
         let url = format!("{}/version", self.base_url);
-        let response = self.client.get(&url).send().map_err(Into::into)?;
-        let body = response.text().map_err(Into::into)?;
+        let response = self.client.get(&url).send()?;
+        let body = response.text()?;
         Ok(body)
     }
 
@@ -394,8 +394,8 @@ impl BlockingClient {
     /// - `{namespace}_libreoffice_restarts_count`      Current number of LibreOffice restarts.
     pub fn metrics(&self) -> Result<String, Error> {
         let url = format!("{}/prometheus/metrics", self.base_url);
-        let response = self.client.get(&url).send().map_err(Into::into)?;
-        let body = response.text().map_err(Into::into)?;
+        let response = self.client.get(&url).send()?;
+        let body = response.text()?;
         Ok(body)
     }
 }
