@@ -24,7 +24,7 @@ Add `gotenberg_pdf` to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-gotenberg_pdf = "0.5"
+gotenberg_pdf = "0.6"
 ```
 
 Ensure you have a running instance of Gotenberg, typically via Docker:
@@ -353,6 +353,8 @@ By default there is no support for HTTPS. If you need TLS, you can enable it by 
 
  - `rustls` - Enables TLS / HTTPS support using the `rustls` library.
  - `native-tls` - Enables TLS / HTTPS support using the native system TLS library.
+
+In 0.6.0 the TLS feature was renamed from `rustls-tls` to `rustls` to match reqwest 0.13. If you previously enabled `features = ["rustls-tls"]`, change it to `features = ["rustls"]`.
 
 ### HTTP/2
 

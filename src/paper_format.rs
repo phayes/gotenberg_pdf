@@ -112,10 +112,10 @@ impl FromStr for LinearDimention {
 impl PaperFormat {
     pub fn height(&self) -> LinearDimention {
         match self {
-            PaperFormat::A0 => LinearDimention::new(46.8, Unit::Cm),
-            PaperFormat::A1 => LinearDimention::new(33.1, Unit::Cm),
-            PaperFormat::A2 => LinearDimention::new(23.4, Unit::Cm),
-            PaperFormat::A3 => LinearDimention::new(16.54, Unit::Cm),
+            PaperFormat::A0 => LinearDimention::new(46.8, Unit::In),
+            PaperFormat::A1 => LinearDimention::new(33.1, Unit::In),
+            PaperFormat::A2 => LinearDimention::new(23.4, Unit::In),
+            PaperFormat::A3 => LinearDimention::new(16.54, Unit::In),
             PaperFormat::A4 => LinearDimention::new(11.7, Unit::In),
             PaperFormat::A5 => LinearDimention::new(8.27, Unit::In),
             PaperFormat::A6 => LinearDimention::new(5.83, Unit::In),
@@ -128,10 +128,10 @@ impl PaperFormat {
 
     pub fn width(&self) -> LinearDimention {
         match self {
-            PaperFormat::A0 => LinearDimention::new(33.1, Unit::Cm),
-            PaperFormat::A1 => LinearDimention::new(23.4, Unit::Cm),
-            PaperFormat::A2 => LinearDimention::new(16.54, Unit::Cm),
-            PaperFormat::A3 => LinearDimention::new(11.7, Unit::Cm),
+            PaperFormat::A0 => LinearDimention::new(33.1, Unit::In),
+            PaperFormat::A1 => LinearDimention::new(23.4, Unit::In),
+            PaperFormat::A2 => LinearDimention::new(16.54, Unit::In),
+            PaperFormat::A3 => LinearDimention::new(11.7, Unit::In),
             PaperFormat::A4 => LinearDimention::new(8.27, Unit::In),
             PaperFormat::A5 => LinearDimention::new(5.83, Unit::In),
             PaperFormat::A6 => LinearDimention::new(4.13, Unit::In),
@@ -264,9 +264,23 @@ mod tests {
 
     #[test]
     fn test_paper_format_dimensions() {
-        let a4 = PaperFormat::A4;
-        assert_eq!(a4.height(), LinearDimention::new(11.7, Unit::In));
-        assert_eq!(a4.width(), LinearDimention::new(8.27, Unit::In));
+        // ISO 216 A-series and US Letter, expressed in inches.
+        assert_eq!(PaperFormat::A0.width(), LinearDimention::new(33.1, Unit::In));
+        assert_eq!(PaperFormat::A0.height(), LinearDimention::new(46.8, Unit::In));
+        assert_eq!(PaperFormat::A1.width(), LinearDimention::new(23.4, Unit::In));
+        assert_eq!(PaperFormat::A1.height(), LinearDimention::new(33.1, Unit::In));
+        assert_eq!(PaperFormat::A2.width(), LinearDimention::new(16.54, Unit::In));
+        assert_eq!(PaperFormat::A2.height(), LinearDimention::new(23.4, Unit::In));
+        assert_eq!(PaperFormat::A3.width(), LinearDimention::new(11.7, Unit::In));
+        assert_eq!(PaperFormat::A3.height(), LinearDimention::new(16.54, Unit::In));
+        assert_eq!(PaperFormat::A4.width(), LinearDimention::new(8.27, Unit::In));
+        assert_eq!(PaperFormat::A4.height(), LinearDimention::new(11.7, Unit::In));
+        assert_eq!(PaperFormat::A5.width(), LinearDimention::new(5.83, Unit::In));
+        assert_eq!(PaperFormat::A5.height(), LinearDimention::new(8.27, Unit::In));
+        assert_eq!(PaperFormat::A6.width(), LinearDimention::new(4.13, Unit::In));
+        assert_eq!(PaperFormat::A6.height(), LinearDimention::new(5.83, Unit::In));
+        assert_eq!(PaperFormat::Letter.width(), LinearDimention::new(8.5, Unit::In));
+        assert_eq!(PaperFormat::Letter.height(), LinearDimention::new(11.0, Unit::In));
     }
 
     #[test]

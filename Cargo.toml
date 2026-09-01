@@ -2,9 +2,13 @@
 name = "gotenberg_pdf"
 version = "0.6.0"
 edition = "2024"
+rust-version = "1.85"
 license = "MIT"
 description = "A Rust client for the Gotenberg PDF API"
 keywords = ["gotenberg", "pdf", "chromium", "libreoffice"]
+repository = "https://github.com/phayes/gotenberg_pdf"
+homepage = "https://github.com/phayes/gotenberg_pdf"
+documentation = "https://docs.rs/gotenberg_pdf"
 
 [dependencies]
 reqwest = { version = "0.13", features = [
