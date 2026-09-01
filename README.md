@@ -3,6 +3,8 @@
 [![crates.io](https://img.shields.io/crates/v/gotenberg_pdf.svg)](https://crates.io/crates/gotenberg_pdf)
 [![docs.rs](https://img.shields.io/badge/docs.rs-gotenberg_pdf-green)](https://docs.rs/gotenberg_pdf)
 [![GitHub Actions](https://github.com/phayes/gotenberg_pdf/actions/workflows/rust.yml/badge.svg)](https://github.com/phayes/gotenberg_pdf/actions)
+[![u24.gov.ua](https://img.shields.io/badge/Slava-Ukraini-yellow?labelColor=%230056B9&color=%23FFD800)](https://u24.gov.ua/)
+
 
 **`gotenberg_pdf`** is a Rust library that provides an easy-to-use interface for interacting with the [Gotenberg API](https://gotenberg.dev/).
 
